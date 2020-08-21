@@ -11,9 +11,13 @@ const image = require('./controllers/image');
 const db = knex({
   client: 'pg',
   version: '8.3.2',
-  connection: {
-  connectionString: process.env.DATABASE_URL,
-  ssl: true
+   connection: {
+     connectionString: process.env.DATABASE_URL,
+     ssl: true
+    // host : '127.0.0.1',
+    // user : '',
+    // password : '',
+    // database : 'smart-brain'
   }
 });
 
@@ -83,9 +87,8 @@ app.post('/imageurl',(req,res)=>{image.handleApiCall(req,res)});
 // bcrypt.compare("veggies", hash, function(err, res) {
     // res = false
 // });
-const PORT = process.env.PORT;
-app.listen(PORT||3000,() =>{
-	console.log(`app is running on port ${PORT}`);
+app.listen(process.env.PORT || 3000,() =>{
+	console.log(`app is running on port ${process.env.PORT}`);
 });
 
 /*
