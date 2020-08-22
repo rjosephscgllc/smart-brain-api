@@ -10,20 +10,10 @@ const handleProfileGet = (req,res,db) => {
 	}
 	})
 	.catch(err=>res.status(400).json('error getting user'))
-
-	
-	// database.users.forEach(user => {
-	// 	if (user.id === id){
- //            found = true
-	// 		return res.json(user)
-	// 	}
-	// 	})
- //    if(!found){
-			
     
 	
 };
 
 module.exports = {
-	handleProfileGet:handleProfileGet
+	handleProfileGet
 }

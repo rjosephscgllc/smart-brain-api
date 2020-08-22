@@ -5,7 +5,7 @@ const app = new Clarifai.App({
 });
 const handleApiCall = (req,res) => {
 console.log(req.body)	
-app.models.predict('c0c0ac362b03416da06ab3fa36fb58e3',req.body.input)
+app.models.predict(Clarifai.FACE_DETECT_MODEL,req.body.input)
 .then(data=>{
 	res.json(data)
 })
@@ -24,6 +24,6 @@ const handleImage = (req,res,db) => {
       .catch(err=>res.status(400).json('unable to get entries'))
 };
 module.exports = {
-	handleImage:handleImage,
-	handleApiCall:handleApiCall
+	handleImage,
+	handleApiCall
 }

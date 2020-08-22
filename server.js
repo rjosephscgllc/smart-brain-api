@@ -7,59 +7,24 @@ const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
-
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
 const db = knex({
   client: 'pg',
   version: '8.3.2',
-   connection: {
-     connectionString: process.env.DATABASE_URL,
-     ssl: true
-    // host : '127.0.0.1',
-    // user : '',
-    // password : '',
-    // database : 'smart-brain'
+  connection: {
+   // host : '127.0.0.1',
+   // user : '',
+   // password : '',
+   // database : 'smart-brain' 
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
   }
 });
-
-// db.select('*').table('users').then(data=>{
-// 	console.log(data);
-// });
 
 const app = express();
 
 app.use(express.json());
-// const database = {
-//    users : [
-//    {
-//        id: '123',
-//        name: 'John',
-//        email: 'john@gmail.com',
-//        password: 'cookies',
-//        entries: 0,
-//        joined: new Date()
-//     },
-//     {
-//        id: '124',
-//        name: 'Sally',
-//        email: 'sally@gmail.com',
-//        password: 'bananas',
-//        entries: 0,
-//        joined: new Date()
-//     }
 
-//    ],
-//    login: [
-//    {
-//    	id: '987',
-//    	hash: '',
-//    	email: 'john@gmail.com'
-//    }
-
-//    ]
-
-
-
-// }
 app.use(cors())
 app.get('/',(req,res)=>{
 	res.json('it is working!');
@@ -75,26 +40,7 @@ app.get('/profile/:id',(req,res)=>{profile.handleProfileGet(req,res,db)});
 app.put('/image',(req,res)=>{image.handleImage(req,res,db)});
 app.post('/imageurl',(req,res)=>{image.handleApiCall(req,res)});
 	
-	
-// bcrypt.hash("bacon", null, null, function(err, hash) {
-  // Store hash in your password DB.
-// });
-
-// Load hash from your password DB.
-// bcrypt.compare("bacon", hash, function(err, res) {
-    // res == true
-// });
-// bcrypt.compare("veggies", hash, function(err, res) {
-    // res = false
-// });
-app.listen(process.env.PORT || 3000,() =>{
-	console.log(`app is running on port ${process.env.PORT}`);
+app.listen(process.env.PORT||3000,() =>{
+  console.log(`app is running on port ${process.env.PORT}`);
 });
 
-/*
-/ --> res = this is working
-/signin --> POST success/fail
-/register --> POST = user
-/profile/:userid --> GET = user
-/image --> PUT --> user
-*/

@@ -3,12 +3,6 @@ const handleSignin = (req,res,db,bcrypt) => {
     if(!email||!password){
         res.status(400).json('incorrect form submission')
     }
-	// bcrypt.compare("apple", '$2a$10$m.xxkKeAwfO8tmc4ORCWVenXES9jIqOMH.8IW05FbqtnmUdNg4Zvu', function(err, res) {
- //     console.log('first guess',res)
- //    });
- //    bcrypt.compare("veggies", '$2a$10$m.xxkKeAwfO8tmc4ORCWVenXES9jIqOMH.8IW05FbqtnmUdNg4Zvu', function(err, res) {
- //      console.log('second guess',res)
- //    });
    
     db.select('email','hash').from('login')
       .where('email','=',email)
@@ -29,5 +23,5 @@ const handleSignin = (req,res,db,bcrypt) => {
      
      };      	
 module.exports = {
-	handleSignin:handleSignin
+	handleSignin
 }

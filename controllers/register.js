@@ -32,18 +32,7 @@ const handleRegister = (req,res,db,bcrypt) => {
 };
 
 module.exports = {
-    handleRegister:handleRegister
+    handleRegister
 };
-    // db('login').insert({email: email, 
-    // 	                hash: newHash
-    // 	               }).then(console.log);
-   
-	// database.users.push(
-	// {
- //       id: '125',
- //       name: name,
- //       email: email,
- //       entries: 0,
- //       joined: new Date()
- //    })
+    
     
